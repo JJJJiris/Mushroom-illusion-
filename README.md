@@ -91,3 +91,11 @@ npm run preview
 
 - App: https://jjjjiris.github.io/Mushroom-illusion-/
 - Presentation Slides: https://jjjjiris.github.io/Mushroom-illusion-/presentation.html
+
+---
+
+## 小组成员 | Group Members
+
+- JIANG CHUNWEI（姜春蔚）- mc569121
+- LIU YA JING（刘雅静）- mc569037
+- LI XINYUE（李欣玥）- mc569227
