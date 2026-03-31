@@ -84,3 +84,10 @@ npm run preview
 ## 仓库地址 | Repository
 
 - https://github.com/JJJJiris/Mushroom-illusion-
+
+---
+
+## 在线地址 | Live Links
+
+- App: https://jjjjiris.github.io/Mushroom-illusion-/
+- Presentation: https://jjjjiris.github.io/Mushroom-illusion-/presentation.html

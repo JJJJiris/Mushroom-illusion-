@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mushroom illusion Presentation</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0f1217;
+        --panel: #171a20;
+        --muted: #95a1b2;
+        --text: #e6ebf2;
+        --line: #2a2f38;
+        --accent: #7c5cff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(ellipse at top, #1a1f2a 0%, var(--bg) 58%);
+        color: var(--text);
+      }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 18px 52px;
+      }
+      .lang {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+      .lang button {
+        border: 1px solid var(--line);
+        background: #1b1f28;
+        color: var(--text);
+        border-radius: 999px;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+      .lang button.active {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        border-color: transparent;
+      }
+      .hero {
+        margin-top: 10px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(23, 26, 32, 0.92);
+      }
+      h1 { margin: 0; font-size: 1.8rem; }
+      .sub { color: var(--muted); margin-top: 8px; line-height: 1.45; }
+      .grid {
+        display: grid;
+        gap: 14px;
+        margin-top: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--panel);
+        padding: 14px;
+      }
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+        color: #cdd6e3;
+      }
+      .card p, .card li { color: var(--muted); line-height: 1.45; }
+      .card ul { margin: 0; padding-left: 18px; }
+      .links {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .links a {
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 8px 12px;
+        background: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="lang">
+        <button id="btn-en" class="active" type="button">English</button>
+        <button id="btn-zh" type="button">中文</button>
+      </div>
+
+      <section class="hero">
+        <h1 id="title">Mushroom illusion Diffuse Canvas Tool</h1>
+        <p id="subtitle" class="sub">
+          A gesture-driven visual tool for fast concept exploration and production-ready export in visual communication design.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <h3 id="sec1t">Why this tool</h3>
+            <p id="sec1d">It shortens the path from idea to visual output when designers need many coherent but non-repetitive backgrounds.</p>
+          </article>
+          <article class="card">
+            <h3 id="sec2t">Design process value</h3>
+            <p id="sec2d">Useful in concept, style alignment, and delivery stages for posters, social visuals, and motion backgrounds.</p>
+          </article>
+          <article class="card">
+            <h3 id="sec3t">Design thinking</h3>
+            <p id="sec3d">Interaction first, then visual behavior, then controls, and finally export capability.</p>
+          </article>
+          <article class="card">
+            <h3 id="sec4t">Key UI/UX decisions</h3>
+            <ul>
+              <li id="u1">Single-page tabbed sidebar to reduce scrolling burden.</li>
+              <li id="u2">High-frequency controls surfaced in Hand and Export sections.</li>
+              <li id="u3">Preset styles and bilingual boot page for lower adoption friction.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="links">
+          <a href="./">Open App</a>
+          <a href="https://github.com/JJJJiris/Mushroom-illusion-" target="_blank" rel="noreferrer">GitHub Repo</a>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const en = {
+        title: "Mushroom illusion Diffuse Canvas Tool",
+        subtitle:
+          "A gesture-driven visual tool for fast concept exploration and production-ready export in visual communication design.",
+        sec1t: "Why this tool",
+        sec1d:
+          "It shortens the path from idea to visual output when designers need many coherent but non-repetitive backgrounds.",
+        sec2t: "Design process value",
+        sec2d:
+          "Useful in concept, style alignment, and delivery stages for posters, social visuals, and motion backgrounds.",
+        sec3t: "Design thinking",
+        sec3d:
+          "Interaction first, then visual behavior, then controls, and finally export capability.",
+        sec4t: "Key UI/UX decisions",
+        u1: "Single-page tabbed sidebar to reduce scrolling burden.",
+        u2: "High-frequency controls surfaced in Hand and Export sections.",
+        u3: "Preset styles and bilingual boot page for lower adoption friction.",
+      };
+
+      const zh = {
+        title: "Mushroom illusion 弥散画布工具",
+        subtitle:
+          "一个基于手势交互的视觉生成工具，用于视觉传达设计中的快速概念探索与可交付导出。",
+        sec1t: "为什么做这个工具",
+        sec1d:
+          "当设计师需要大量风格统一但不重复的背景方案时，它能缩短从想法到视觉结果的路径。",
+        sec2t: "在设计流程中的价值",
+        sec2d:
+          "适用于概念探索、风格统一和交付阶段，可用于海报、社媒视觉和动态背景。",
+        sec3t: "设计思考过程",
+        sec3d:
+          "先交互、再视觉行为、再参数控制、最后完善导出能力。",
+        sec4t: "关键 UI/UX 决策",
+        u1: "采用分页侧栏导航，减少滚动和认知负担。",
+        u2: "把高频操作集中到手势栏和导出栏。",
+        u3: "加入风格预设和双语进入页，降低使用门槛。",
+      };
+
+      function apply(dict) {
+        Object.keys(dict).forEach((k) => {
+          const el = document.getElementById(k);
+          if (el) el.textContent = dict[k];
+        });
+        document.documentElement.lang = dict === zh ? "zh-CN" : "en";
+      }
+
+      const bEn = document.getElementById("btn-en");
+      const bZh = document.getElementById("btn-zh");
+      bEn.addEventListener("click", () => {
+        bEn.classList.add("active");
+        bZh.classList.remove("active");
+        apply(en);
+      });
+      bZh.addEventListener("click", () => {
+        bZh.classList.add("active");
+        bEn.classList.remove("active");
+        apply(zh);
+      });
+    </script>
+  </body>
+</html>
