@@ -157,9 +157,9 @@
       <div class="footer">
         <div id="pager">1 / 6</div>
         <div class="links">
-          <a href="./">Open App</a>
+          <a id="link-app" href="./">Open App</a>
+          <a id="link-video" href="https://youtu.be/SCf96BqlORY" target="_blank" rel="noreferrer">Video Tutorial</a>
           <a href="https://github.com/JJJJiris/Mushroom-illusion-" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://youtu.be/SCf96BqlORY" target="_blank" rel="noreferrer">Demo Video / 使用说明视频</a>
         </div>
       </div>
     </main>
@@ -321,6 +321,10 @@
         }
         document.getElementById("pager").textContent = `${idx + 1} / ${slides[lang].length}`;
         document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+        const linkApp = document.getElementById("link-app");
+        const linkVideo = document.getElementById("link-video");
+        if (linkApp) linkApp.textContent = lang === "zh" ? "进入应用" : "Open App";
+        if (linkVideo) linkVideo.textContent = lang === "zh" ? "查看视频教程" : "Video Tutorial";
       }
 
       function move(delta) {
