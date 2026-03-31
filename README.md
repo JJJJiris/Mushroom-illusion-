@@ -90,4 +90,4 @@ npm run preview
 ## 在线地址 | Live Links
 
 - App: https://jjjjiris.github.io/Mushroom-illusion-/
-- Presentation: https://jjjjiris.github.io/Mushroom-illusion-/presentation.html
+- Presentation Slides: https://jjjjiris.github.io/Mushroom-illusion-/presentation.html

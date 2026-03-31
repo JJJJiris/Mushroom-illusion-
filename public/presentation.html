@@ -3,60 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mushroom illusion Presentation</title>
+    <title>Mushroom illusion Slides</title>
     <style>
       :root {
         color-scheme: dark;
         --bg: #0f1217;
         --panel: #171a20;
-        --muted: #95a1b2;
-        --text: #e6ebf2;
         --line: #2a2f38;
+        --text: #ecf2fb;
+        --muted: #9aa8bb;
         --accent: #7c5cff;
       }
       * { box-sizing: border-box; }
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background: radial-gradient(ellipse at top, #1a1f2a 0%, var(--bg) 58%);
+        background: radial-gradient(ellipse at top, #1a1f2a 0%, var(--bg) 60%);
         color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
-      .wrap {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 28px 18px 52px;
-      }
-      .lang {
+      .deck {
+        min-height: 100vh;
         display: flex;
-        gap: 10px;
-        justify-content: flex-end;
+        flex-direction: column;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 18px 16px 24px;
       }
-      .lang button {
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+      .lang, .nav {
+        display: flex;
+        gap: 8px;
+      }
+      button {
         border: 1px solid var(--line);
+        border-radius: 10px;
         background: #1b1f28;
         color: var(--text);
-        border-radius: 999px;
-        padding: 6px 12px;
+        padding: 8px 12px;
         cursor: pointer;
       }
-      .lang button.active {
+      button.active {
         background: linear-gradient(135deg, #6366f1, #8b5cf6);
         border-color: transparent;
       }
-      .hero {
-        margin-top: 10px;
-        padding: 22px;
+      .slide {
+        flex: 1;
+        margin-top: 14px;
         border: 1px solid var(--line);
         border-radius: 14px;
-        background: rgba(23, 26, 32, 0.92);
+        background: rgba(23, 26, 32, 0.93);
+        padding: 28px 26px;
       }
-      h1 { margin: 0; font-size: 1.8rem; }
-      .sub { color: var(--muted); margin-top: 8px; line-height: 1.45; }
-      .grid {
+      .kicker {
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+      h1 {
+        margin: 10px 0 8px;
+        font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      }
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+        max-width: 900px;
+      }
+      .cols {
+        margin-top: 20px;
         display: grid;
         gap: 14px;
-        margin-top: 16px;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       }
       .card {
         border: 1px solid var(--line);
@@ -67,127 +90,269 @@
       .card h3 {
         margin: 0 0 8px;
         font-size: 1rem;
-        color: #cdd6e3;
+        color: #d8e0ec;
       }
-      .card p, .card li { color: var(--muted); line-height: 1.45; }
+      .card p, .card li {
+        color: var(--muted);
+        line-height: 1.5;
+      }
       .card ul { margin: 0; padding-left: 18px; }
-      .links {
-        margin-top: 18px;
+      .footer {
+        margin-top: 14px;
         display: flex;
-        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+      }
+      .links {
+        display: flex;
         gap: 10px;
       }
       .links a {
-        color: white;
         text-decoration: none;
-        border-radius: 10px;
-        padding: 8px 12px;
+        color: white;
         background: var(--accent);
+        border-radius: 8px;
+        padding: 6px 10px;
+      }
+      @media (max-width: 720px) {
+        .topbar { flex-wrap: wrap; }
+        .slide { padding: 18px 16px; }
       }
     </style>
   </head>
   <body>
-    <div class="wrap">
-      <div class="lang">
-        <button id="btn-en" class="active" type="button">English</button>
-        <button id="btn-zh" type="button">中文</button>
+    <main class="deck">
+      <div class="topbar">
+        <div class="lang">
+          <button id="btn-en" class="active" type="button">English</button>
+          <button id="btn-zh" type="button">中文</button>
+        </div>
+        <div class="nav">
+          <button id="prev" type="button">◀</button>
+          <button id="next" type="button">▶</button>
+        </div>
       </div>
 
-      <section class="hero">
-        <h1 id="title">Mushroom illusion Diffuse Canvas Tool</h1>
-        <p id="subtitle" class="sub">
-          A gesture-driven visual tool for fast concept exploration and production-ready export in visual communication design.
-        </p>
-
-        <div class="grid">
+      <section class="slide">
+        <p id="kicker" class="kicker"></p>
+        <h1 id="title"></h1>
+        <p id="subtitle" class="subtitle"></p>
+        <div class="cols">
           <article class="card">
-            <h3 id="sec1t">Why this tool</h3>
-            <p id="sec1d">It shortens the path from idea to visual output when designers need many coherent but non-repetitive backgrounds.</p>
-          </article>
-          <article class="card">
-            <h3 id="sec2t">Design process value</h3>
-            <p id="sec2d">Useful in concept, style alignment, and delivery stages for posters, social visuals, and motion backgrounds.</p>
-          </article>
-          <article class="card">
-            <h3 id="sec3t">Design thinking</h3>
-            <p id="sec3d">Interaction first, then visual behavior, then controls, and finally export capability.</p>
-          </article>
-          <article class="card">
-            <h3 id="sec4t">Key UI/UX decisions</h3>
+            <h3 id="b1t"></h3>
             <ul>
-              <li id="u1">Single-page tabbed sidebar to reduce scrolling burden.</li>
-              <li id="u2">High-frequency controls surfaced in Hand and Export sections.</li>
-              <li id="u3">Preset styles and bilingual boot page for lower adoption friction.</li>
+              <li id="b1a"></li>
+              <li id="b1b"></li>
+              <li id="b1c"></li>
             </ul>
           </article>
-        </div>
-
-        <div class="links">
-          <a href="./">Open App</a>
-          <a href="https://github.com/JJJJiris/Mushroom-illusion-" target="_blank" rel="noreferrer">GitHub Repo</a>
+          <article class="card">
+            <h3 id="b2t"></h3>
+            <p id="b2d"></p>
+          </article>
         </div>
       </section>
-    </div>
+
+      <div class="footer">
+        <div id="pager">1 / 6</div>
+        <div class="links">
+          <a href="./">Open App</a>
+          <a href="https://github.com/JJJJiris/Mushroom-illusion-" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </main>
 
     <script>
-      const en = {
-        title: "Mushroom illusion Diffuse Canvas Tool",
-        subtitle:
-          "A gesture-driven visual tool for fast concept exploration and production-ready export in visual communication design.",
-        sec1t: "Why this tool",
-        sec1d:
-          "It shortens the path from idea to visual output when designers need many coherent but non-repetitive backgrounds.",
-        sec2t: "Design process value",
-        sec2d:
-          "Useful in concept, style alignment, and delivery stages for posters, social visuals, and motion backgrounds.",
-        sec3t: "Design thinking",
-        sec3d:
-          "Interaction first, then visual behavior, then controls, and finally export capability.",
-        sec4t: "Key UI/UX decisions",
-        u1: "Single-page tabbed sidebar to reduce scrolling burden.",
-        u2: "High-frequency controls surfaced in Hand and Export sections.",
-        u3: "Preset styles and bilingual boot page for lower adoption friction.",
+      const slides = {
+        en: [
+          {
+            kicker: "Slide 1",
+            title: "Project Overview",
+            subtitle:
+              "Mushroom illusion is a gesture-driven diffuse canvas tool for visual communication design.",
+            b1t: "Focus",
+            b1a: "Fast concept exploration",
+            b1b: "Interactive visual generation",
+            b1c: "Production-ready export",
+            b2t: "Core idea",
+            b2d: "Turn hand movement into flowing gradient composition and reduce iteration cost in early design stages.",
+          },
+          {
+            kicker: "Slide 2",
+            title: "Why I Made This Tool",
+            subtitle:
+              "Designers need many coherent but non-repetitive backgrounds in poster and campaign workflows.",
+            b1t: "Pain points",
+            b1a: "Manual process is slow",
+            b1b: "Hard to keep style consistency",
+            b1c: "Export workflow is fragmented",
+            b2t: "Response",
+            b2d: "Integrate gesture input, visual generation, and export into one streamlined interface.",
+          },
+          {
+            kicker: "Slide 3",
+            title: "Use in Design Process",
+            subtitle:
+              "The tool supports concepting, style alignment, and delivery for static and motion outputs.",
+            b1t: "Where it fits",
+            b1a: "Concept mood boards",
+            b1b: "Visual direction comparison",
+            b1c: "Final asset generation",
+            b2t: "Deliverables",
+            b2d: "High-res PNG, transparent PNG, and recorded WebM video for real production use.",
+          },
+          {
+            kicker: "Slide 4",
+            title: "Design Thinking Process",
+            subtitle:
+              "Interaction first, visual behavior second, control layer third, export layer last.",
+            b1t: "Method",
+            b1a: "Gesture as invisible spine",
+            b1b: "Diffuse flow follows path logic",
+            b1c: "Parameters make outcomes controllable",
+            b2t: "Outcome",
+            b2d: "A balance between creative freedom and repeatable visual quality.",
+          },
+          {
+            kicker: "Slide 5",
+            title: "Key UI/UX Decisions",
+            subtitle:
+              "The interface is optimized for single-screen operation and low cognitive load.",
+            b1t: "Decisions",
+            b1a: "Tabbed sidebar to avoid long scrolling",
+            b1b: "High-frequency controls grouped by task",
+            b1c: "Bilingual boot screen and style presets",
+            b2t: "Why",
+            b2d: "Keep users focused on visual exploration instead of interface complexity.",
+          },
+          {
+            kicker: "Slide 6",
+            title: "Summary",
+            subtitle:
+              "Mushroom illusion connects ideation and deliverables in one design-oriented workflow.",
+            b1t: "Project value",
+            b1a: "Faster visual experimentation",
+            b1b: "Consistent style control",
+            b1c: "Ready-to-use output formats",
+            b2t: "Next step",
+            b2d: "Continue improving presentation polish and project documentation for final class submission.",
+          },
+        ],
+        zh: [
+          {
+            kicker: "第 1 页",
+            title: "项目概述",
+            subtitle: "Mushroom illusion 是一个用于视觉传达设计的手势驱动弥散画布工具。",
+            b1t: "核心定位",
+            b1a: "快速概念探索",
+            b1b: "交互式视觉生成",
+            b1c: "可直接交付导出",
+            b2t: "核心思路",
+            b2d: "把手势动作转成流动渐变构图，减少设计前期迭代成本。",
+          },
+          {
+            kicker: "第 2 页",
+            title: "为什么做这个工具",
+            subtitle: "在海报与活动视觉流程中，常常需要大量风格统一但不重复的背景方案。",
+            b1t: "问题",
+            b1a: "手工流程耗时",
+            b1b: "风格统一难度高",
+            b1c: "导出流程割裂",
+            b2t: "对应方案",
+            b2d: "将手势输入、视觉生成与导出能力整合到同一界面。",
+          },
+          {
+            kicker: "第 3 页",
+            title: "在设计流程中的应用",
+            subtitle: "工具覆盖概念探索、风格统一和交付阶段，适配静态与动态产出。",
+            b1t: "适用环节",
+            b1a: "情绪板和概念提案",
+            b1b: "方向对比与定调",
+            b1c: "最终素材输出",
+            b2t: "输出能力",
+            b2d: "支持高清 PNG、透明 PNG 与 WebM 录制视频，适合真实项目交付。",
+          },
+          {
+            kicker: "第 4 页",
+            title: "设计思考过程",
+            subtitle: "先交互、再视觉行为、再参数控制、最后完善导出层。",
+            b1t: "方法",
+            b1a: "把手势设为隐形脊线",
+            b1b: "弥散流动遵循轨迹逻辑",
+            b1c: "参数保证可控结果",
+            b2t: "结果",
+            b2d: "在创作自由度与输出稳定性之间取得平衡。",
+          },
+          {
+            kicker: "第 5 页",
+            title: "关键 UI/UX 决策",
+            subtitle: "界面围绕单屏操作和低认知负担进行优化。",
+            b1t: "决策",
+            b1a: "侧栏分页，避免长滚动",
+            b1b: "高频控件按任务集中",
+            b1c: "双语进入页与风格预设",
+            b2t: "原因",
+            b2d: "减少操作阻力，让用户聚焦视觉探索而不是界面学习。",
+          },
+          {
+            kicker: "第 6 页",
+            title: "总结",
+            subtitle: "Mushroom illusion 把创意探索与素材交付串成一体化设计流程。",
+            b1t: "项目价值",
+            b1a: "更快的视觉试验",
+            b1b: "更稳定的风格控制",
+            b1c: "更直接的可交付导出",
+            b2t: "下一步",
+            b2d: "继续优化展示细节与文档，完成课程最终提交。",
+          },
+        ],
       };
 
-      const zh = {
-        title: "Mushroom illusion 弥散画布工具",
-        subtitle:
-          "一个基于手势交互的视觉生成工具，用于视觉传达设计中的快速概念探索与可交付导出。",
-        sec1t: "为什么做这个工具",
-        sec1d:
-          "当设计师需要大量风格统一但不重复的背景方案时，它能缩短从想法到视觉结果的路径。",
-        sec2t: "在设计流程中的价值",
-        sec2d:
-          "适用于概念探索、风格统一和交付阶段，可用于海报、社媒视觉和动态背景。",
-        sec3t: "设计思考过程",
-        sec3d:
-          "先交互、再视觉行为、再参数控制、最后完善导出能力。",
-        sec4t: "关键 UI/UX 决策",
-        u1: "采用分页侧栏导航，减少滚动和认知负担。",
-        u2: "把高频操作集中到手势栏和导出栏。",
-        u3: "加入风格预设和双语进入页，降低使用门槛。",
-      };
+      let lang = "en";
+      let idx = 0;
 
-      function apply(dict) {
-        Object.keys(dict).forEach((k) => {
+      function render() {
+        const s = slides[lang][idx];
+        for (const k of Object.keys(s)) {
           const el = document.getElementById(k);
-          if (el) el.textContent = dict[k];
-        });
-        document.documentElement.lang = dict === zh ? "zh-CN" : "en";
+          if (el) el.textContent = s[k];
+        }
+        document.getElementById("pager").textContent = `${idx + 1} / ${slides[lang].length}`;
+        document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
       }
 
-      const bEn = document.getElementById("btn-en");
-      const bZh = document.getElementById("btn-zh");
-      bEn.addEventListener("click", () => {
-        bEn.classList.add("active");
-        bZh.classList.remove("active");
-        apply(en);
+      function move(delta) {
+        const len = slides[lang].length;
+        idx = (idx + delta + len) % len;
+        render();
+      }
+
+      const btnEn = document.getElementById("btn-en");
+      const btnZh = document.getElementById("btn-zh");
+      const btnPrev = document.getElementById("prev");
+      const btnNext = document.getElementById("next");
+
+      btnEn.addEventListener("click", () => {
+        lang = "en";
+        btnEn.classList.add("active");
+        btnZh.classList.remove("active");
+        render();
       });
-      bZh.addEventListener("click", () => {
-        bZh.classList.add("active");
-        bEn.classList.remove("active");
-        apply(zh);
+      btnZh.addEventListener("click", () => {
+        lang = "zh";
+        btnZh.classList.add("active");
+        btnEn.classList.remove("active");
+        render();
       });
+      btnPrev.addEventListener("click", () => move(-1));
+      btnNext.addEventListener("click", () => move(1));
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") move(1);
+        if (e.key === "ArrowLeft") move(-1);
+      });
+
+      render();
     </script>
   </body>
 </html>
