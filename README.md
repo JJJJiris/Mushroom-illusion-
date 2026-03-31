@@ -92,6 +92,8 @@ npm run preview
 - App: https://jjjjiris.github.io/Mushroom-illusion-/
 - Presentation Slides: https://jjjjiris.github.io/Mushroom-illusion-/presentation.html
 
+API Key Note: This project does not require private API keys.
+
 ---
 
 ## 小组成员 | Group Members
