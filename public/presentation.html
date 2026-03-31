@@ -236,8 +236,6 @@
             b1a: "Faster visual experimentation",
             b1b: "Consistent style control",
             b1c: "Ready-to-use output formats",
-            b2t: "Next step",
-            b2d: "Continue improving presentation polish and project documentation for final class submission.",
           },
         ],
         zh: [
@@ -304,8 +302,6 @@
             b1a: "更快的视觉试验",
             b1b: "更稳定的风格控制",
             b1c: "更直接的可交付导出",
-            b2t: "下一步",
-            b2d: "继续优化展示细节与文档，完成课程最终提交。",
           },
         ],
       };
@@ -318,6 +314,17 @@
         for (const k of Object.keys(s)) {
           const el = document.getElementById(k);
           if (el) el.textContent = s[k];
+        }
+        const lastIdx = slides[lang].length - 1;
+        const card2 = document.querySelector(".cols article.card:nth-child(2)");
+        if (idx === lastIdx) {
+          const b2t = document.getElementById("b2t");
+          const b2d = document.getElementById("b2d");
+          if (b2t) b2t.textContent = "";
+          if (b2d) b2d.textContent = "";
+          if (card2) card2.style.display = "none";
+        } else if (card2) {
+          card2.style.display = "";
         }
         document.getElementById("pager").textContent = `${idx + 1} / ${slides[lang].length}`;
         document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
