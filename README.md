@@ -30,6 +30,8 @@ Use cases:
 
 ## 核心功能 | Key Features
 
+中文：
+
 - 手势驱动弥散渐变（摄像头识别食指轨迹）
 - 单页侧栏导航（画布 / 手势 / 颜色 / 导出）
 - 风格预设（霓虹蘑菇 / 森林雾影 / 海报高对比）
@@ -37,8 +39,20 @@ Use cases:
 - 画布参数控制（尺寸、横竖版、背景色）
 - PNG 导出（1x / 2x / 3x 分辨率）
 - 透明背景 PNG 导出（带边缘羽化优化）
-- 画布录制导出视频（WebM，帧率/格式/最大时长可调）
+- 画布录制导出视频（WebM，帧率 / 格式 / 最大时长可调）
 - 进入等待页支持中英文选择
+
+English:
+
+- Gesture-driven diffuse gradients (camera tracks the index-finger path)
+- Single-page sidebar with tabs (Canvas / Hand / Colors / Export)
+- Style presets (Neon Mushroom / Forest Haze / Poster Pop)
+- Path editing (clear, undo, redo)
+- Canvas controls (dimensions, portrait/landscape, background color)
+- PNG export at 1x / 2x / 3x resolution
+- Transparent PNG export with feathered edges
+- Canvas recording to WebM video (adjustable FPS, format, and max duration)
+- Boot / welcome screen with Chinese or English
 
 ---
 
@@ -75,9 +89,17 @@ npm run preview
 
 ## 设计目标 | Design Goals
 
+中文：
+
 - 降低抽象背景创作门槛
-- 缩短“想法 -> 可视化 -> 导出”路径
-- 支持“快速发散 + 稳定交付”
+- 缩短「想法 → 可视化 → 导出」路径
+- 支持「快速发散 + 稳定交付」
+
+English:
+
+- Lower the barrier to creating abstract backgrounds
+- Shorten the path from idea → visualization → export
+- Support fast exploration alongside reliable deliverables
 
 ---
 
