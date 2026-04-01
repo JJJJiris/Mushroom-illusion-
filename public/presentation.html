@@ -494,6 +494,39 @@
       height: 18px;
     }
 
+    /* 语言切换（与全屏按钮风格一致，固定在左上角） */
+    .lang-switch {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      z-index: 1000;
+      display: flex;
+      gap: 8px;
+    }
+
+    .lang-switch button {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-dark-tertiary);
+      color: var(--text-primary);
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.25s ease;
+    }
+
+    .lang-switch button:hover {
+      border-color: var(--purple-primary);
+      box-shadow: 0 0 20px var(--purple-glow);
+    }
+
+    .lang-switch button.active {
+      background: var(--purple-primary);
+      border-color: var(--purple-primary);
+      color: var(--text-primary);
+    }
+
     /* 底部快捷链接（GitHub Pages 子路径下 ./ 指向站点根目录） */
     .page-links {
       position: fixed;
@@ -527,6 +560,11 @@
   </style>
 </head>
 <body>
+  <div class="lang-switch" role="group" aria-label="Language" id="lang-switch-group">
+    <button type="button" id="lang-en" class="active">English</button>
+    <button type="button" id="lang-zh">中文</button>
+  </div>
+
   <!-- 导航指示器 -->
   <nav class="nav-dots">
     <div class="nav-dot active" data-slide="0"></div>
@@ -543,7 +581,7 @@
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
     </svg>
-    全屏
+    <span data-i18n="btn_fullscreen">Fullscreen</span>
   </button>
 
   <!-- 演示文稿 -->
@@ -553,7 +591,7 @@
     <section class="slide slide-cover" id="slide-0">
       <div class="slide-content">
         <h1 class="cover-title animate-in delay-1">Mushroom Illusion</h1>
-        <p class="cover-subtitle animate-in delay-2">Diffusion Canvas Tool</p>
+        <p class="cover-subtitle animate-in delay-2" data-i18n="cover_subtitle">Diffusion Canvas Tool</p>
         <div class="cover-authors animate-in delay-3">
           LIU YA JING 刘雅静 mc569037 | JIANG CHUNWEI 姜春蔚 mc569121 | LI XINYUE 李欣玥 mc569227
         </div>
@@ -564,12 +602,12 @@
     <section class="slide" id="slide-1">
       <div class="slide-content">
         <div class="content-header animate-in">
-          <h2 class="content-title"><span>01</span> Development Reasons</h2>
+          <h2 class="content-title"><span>01</span> <span data-i18n="s1_title">Development Reasons</span></h2>
           <div class="title-line"></div>
         </div>
         <div class="content-body animate-in delay-1">
-          <p>In visual communication, we often need to find suitable design solutions for posters or social media main visuals. The gradient technique is a commonly used method.</p>
-          <p>The traditional process often requires continuous adjustments of light perception and composition in design software. This tool is designed to simplify this cumbersome process, making the transformation from "idea" to "usable image" more rapid and effortless.</p>
+          <p data-i18n="s1_p1">In visual communication, we often need to find suitable design solutions for posters or social media main visuals. The gradient technique is a commonly used method.</p>
+          <p data-i18n="s1_p2">The traditional process often requires continuous adjustments of light perception and composition in design software. This tool is designed to simplify this cumbersome process, making the transformation from "idea" to "usable image" more rapid and effortless.</p>
         </div>
       </div>
     </section>
@@ -578,7 +616,7 @@
     <section class="slide" id="slide-2">
       <div class="slide-content">
         <div class="content-header animate-in">
-          <h2 class="content-title"><span>02</span> Work Application</h2>
+          <h2 class="content-title"><span>02</span> <span data-i18n="s2_title">Work Application</span></h2>
           <div class="title-line"></div>
         </div>
         <div class="feature-list animate-in delay-2">
@@ -589,8 +627,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Early Exploration</h4>
-              <p>Quickly generate mood boards and atmosphere backgrounds.</p>
+              <h4 data-i18n="s2_f1_h">Early Exploration</h4>
+              <p data-i18n="s2_f1_p">Quickly generate mood boards and atmosphere backgrounds.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -600,8 +638,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Brand Extension</h4>
-              <p>As a visual material master, batch generate a series of illustrations with consistent style.</p>
+              <h4 data-i18n="s2_f2_h">Brand Extension</h4>
+              <p data-i18n="s2_f2_p">As a visual material master, batch generate a series of illustrations with consistent style.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -611,8 +649,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Post-Composition</h4>
-              <p>Supports transparent background PNG export, facilitating the superimposition of text and graphics.</p>
+              <h4 data-i18n="s2_f3_h">Post-Composition</h4>
+              <p data-i18n="s2_f3_p">Supports transparent background PNG export, facilitating the superimposition of text and graphics.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -623,8 +661,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Dynamic Output</h4>
-              <p>One-click record the canvas, producing dynamic visual materials.</p>
+              <h4 data-i18n="s2_f4_h">Dynamic Output</h4>
+              <p data-i18n="s2_f4_p">One-click record the canvas, producing dynamic visual materials.</p>
             </div>
           </div>
         </div>
@@ -635,7 +673,7 @@
     <section class="slide" id="slide-3">
       <div class="slide-content">
         <div class="content-header animate-in">
-          <h2 class="content-title"><span>03</span> Design Thinking Process</h2>
+          <h2 class="content-title"><span>03</span> <span data-i18n="s3_title">Design Thinking Process</span></h2>
           <div class="title-line"></div>
         </div>
         <div class="feature-list animate-in delay-1">
@@ -646,8 +684,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Interaction</h4>
-              <p>With gesture trajectories as the main body, establish the connection between actions and images.</p>
+              <h4 data-i18n="s3_f1_h">Interaction</h4>
+              <p data-i18n="s3_f1_p">With gesture trajectories as the main body, establish the connection between actions and images.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -658,8 +696,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Visual</h4>
-              <p>Algorithmically simulates the change of diffused light clusters along the gesture to ensure the uniformity of dynamic textures.</p>
+              <h4 data-i18n="s3_f2_h">Visual</h4>
+              <p data-i18n="s3_f2_p">Algorithmically simulates the change of diffused light clusters along the gesture to ensure the uniformity of dynamic textures.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -669,8 +707,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Control</h4>
-              <p>Add halo, color, presets, and undo/redo to enhance controllability.</p>
+              <h4 data-i18n="s3_f3_h">Control</h4>
+              <p data-i18n="s3_f3_p">Add halo, color, presets, and undo/redo to enhance controllability.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -680,8 +718,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Delivery</h4>
-              <p>Integrate canvas export and video recording to break the loop.</p>
+              <h4 data-i18n="s3_f4_h">Delivery</h4>
+              <p data-i18n="s3_f4_p">Integrate canvas export and video recording to break the loop.</p>
             </div>
           </div>
         </div>
@@ -692,7 +730,7 @@
     <section class="slide" id="slide-4">
       <div class="slide-content">
         <div class="content-header animate-in">
-          <h2 class="content-title"><span>04</span> Design Decision</h2>
+          <h2 class="content-title"><span>04</span> <span data-i18n="s4_title">Design Decision</span></h2>
           <div class="title-line"></div>
         </div>
         <div class="feature-list animate-in delay-1">
@@ -703,8 +741,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Structure</h4>
-              <p>Sidebar page navigation (canvas/gesture/color/export), achieving efficient single-screen operation.</p>
+              <h4 data-i18n="s4_f1_h">Structure</h4>
+              <p data-i18n="s4_f1_p">Sidebar page navigation (canvas/gesture/color/export), achieving efficient single-screen operation.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -714,8 +752,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Guidance</h4>
-              <p>Language selection on the first page to reduce the understanding threshold for users across languages.</p>
+              <h4 data-i18n="s4_f2_h">Guidance</h4>
+              <p data-i18n="s4_f2_p">Language selection on the first page to reduce the understanding threshold for users across languages.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -725,8 +763,8 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Error Tolerance</h4>
-              <p>Gesture page integrates "clear + undo/redo", supporting frequent trial and error exploration.</p>
+              <h4 data-i18n="s4_f3_h">Error Tolerance</h4>
+              <p data-i18n="s4_f3_p">Gesture page integrates "clear + undo/redo", supporting frequent trial and error exploration.</p>
             </div>
           </div>
           <div class="feature-item">
@@ -736,13 +774,13 @@
               </svg>
             </div>
             <div class="feature-text">
-              <h4>Presentation</h4>
-              <p>Color presets + real-time adjustment of size with the scroll wheel, allowing the effect to be presented intuitively.</p>
+              <h4 data-i18n="s4_f4_h">Presentation</h4>
+              <p data-i18n="s4_f4_p">Color presets + real-time adjustment of size with the scroll wheel, allowing the effect to be presented intuitively.</p>
             </div>
           </div>
         </div>
         <div class="core-idea animate-in delay-3">
-          <p>The core of these decisions is to <strong>reduce the difficulty of use</strong>, enabling the generation of desired visual elements quickly and simply.</p>
+          <p data-i18n-html="s4_core">The core of these decisions is to <strong>reduce the difficulty of use</strong>, enabling the generation of desired visual elements quickly and simply.</p>
         </div>
       </div>
     </section>
@@ -751,25 +789,25 @@
     <section class="slide" id="slide-5">
       <div class="slide-content">
         <div class="content-header animate-in">
-          <h2 class="content-title"><span>05</span> Development Process</h2>
+          <h2 class="content-title"><span>05</span> <span data-i18n="s5_title">Development Process</span></h2>
           <div class="title-line"></div>
         </div>
         <div class="process-timeline animate-in delay-1">
           <div class="process-item">
-            <h4>Ideation & Prototyping</h4>
-            <p>During development, we first create a small prototype to verify the feasibility of the idea.</p>
+            <h4 data-i18n="s5_p1_h">Ideation & Prototyping</h4>
+            <p data-i18n="s5_p1_p">During development, we first create a small prototype to verify the feasibility of the idea.</p>
           </div>
           <div class="process-item">
-            <h4>Feature Implementation</h4>
-            <p>Then continuously add web functions, building out the core features one by one.</p>
+            <h4 data-i18n="s5_p2_h">Feature Implementation</h4>
+            <p data-i18n="s5_p2_p">Then continuously add web functions, building out the core features one by one.</p>
           </div>
           <div class="process-item">
-            <h4>Testing & Detection</h4>
-            <p>Test and detect the effect and operation of web generation for any problems.</p>
+            <h4 data-i18n="s5_p3_h">Testing & Detection</h4>
+            <p data-i18n="s5_p3_p">Test and detect the effect and operation of web generation for any problems.</p>
           </div>
           <div class="process-item">
-            <h4>Iteration & Refinement</h4>
-            <p>Continuously make adjustments based on feedback and optimize the user experience.</p>
+            <h4 data-i18n="s5_p4_h">Iteration & Refinement</h4>
+            <p data-i18n="s5_p4_p">Continuously make adjustments based on feedback and optimize the user experience.</p>
           </div>
         </div>
       </div>
@@ -777,13 +815,153 @@
 
   </div>
 
-  <nav class="page-links" aria-label="资源链接">
-    <a href="./">进入应用</a>
-    <a href="https://youtu.be/SCf96BqlORY" target="_blank" rel="noreferrer">查看视频教程</a>
+  <nav class="page-links" id="page-links-nav" aria-label="Resource links">
+    <a href="./" data-i18n="link_app">Open App</a>
+    <a href="https://youtu.be/SCf96BqlORY" target="_blank" rel="noreferrer" data-i18n="link_video">Video Tutorial</a>
     <a href="https://github.com/JJJJiris/Mushroom-illusion-" target="_blank" rel="noreferrer">GitHub</a>
   </nav>
 
   <script>
+    const I18N = {
+      en: {
+        doc_title: "Mushroom Illusion - Diffusion Canvas Tool",
+        btn_fullscreen: "Fullscreen",
+        cover_subtitle: "Diffusion Canvas Tool",
+        aria_page_links: "Resource links",
+        aria_lang_group: "Language",
+        s1_title: "Development Reasons",
+        s1_p1:
+          "In visual communication, we often need to find suitable design solutions for posters or social media main visuals. The gradient technique is a commonly used method.",
+        s1_p2:
+          'The traditional process often requires continuous adjustments of light perception and composition in design software. This tool is designed to simplify this cumbersome process, making the transformation from "idea" to "usable image" more rapid and effortless.',
+        s2_title: "Work Application",
+        s2_f1_h: "Early Exploration",
+        s2_f1_p: "Quickly generate mood boards and atmosphere backgrounds.",
+        s2_f2_h: "Brand Extension",
+        s2_f2_p: "As a visual material master, batch generate a series of illustrations with consistent style.",
+        s2_f3_h: "Post-Composition",
+        s2_f3_p: "Supports transparent background PNG export, facilitating the superimposition of text and graphics.",
+        s2_f4_h: "Dynamic Output",
+        s2_f4_p: "One-click record the canvas, producing dynamic visual materials.",
+        s3_title: "Design Thinking Process",
+        s3_f1_h: "Interaction",
+        s3_f1_p: "With gesture trajectories as the main body, establish the connection between actions and images.",
+        s3_f2_h: "Visual",
+        s3_f2_p:
+          "Algorithmically simulates the change of diffused light clusters along the gesture to ensure the uniformity of dynamic textures.",
+        s3_f3_h: "Control",
+        s3_f3_p: "Add halo, color, presets, and undo/redo to enhance controllability.",
+        s3_f4_h: "Delivery",
+        s3_f4_p: "Integrate canvas export and video recording to break the loop.",
+        s4_title: "Design Decision",
+        s4_f1_h: "Structure",
+        s4_f1_p: "Sidebar page navigation (canvas/gesture/color/export), achieving efficient single-screen operation.",
+        s4_f2_h: "Guidance",
+        s4_f2_p: "Language selection on the first page to reduce the understanding threshold for users across languages.",
+        s4_f3_h: "Error Tolerance",
+        s4_f3_p: 'Gesture page integrates "clear + undo/redo", supporting frequent trial and error exploration.',
+        s4_f4_h: "Presentation",
+        s4_f4_p:
+          "Color presets + real-time adjustment of size with the scroll wheel, allowing the effect to be presented intuitively.",
+        s4_core:
+          "The core of these decisions is to <strong>reduce the difficulty of use</strong>, enabling the generation of desired visual elements quickly and simply.",
+        s5_title: "Development Process",
+        s5_p1_h: "Ideation & Prototyping",
+        s5_p1_p: "During development, we first create a small prototype to verify the feasibility of the idea.",
+        s5_p2_h: "Feature Implementation",
+        s5_p2_p: "Then continuously add web functions, building out the core features one by one.",
+        s5_p3_h: "Testing & Detection",
+        s5_p3_p: "Test and detect the effect and operation of web generation for any problems.",
+        s5_p4_h: "Iteration & Refinement",
+        s5_p4_p: "Continuously make adjustments based on feedback and optimize the user experience.",
+        link_app: "Open App",
+        link_video: "Video Tutorial",
+      },
+      zh: {
+        doc_title: "Mushroom Illusion - 弥散画布工具",
+        btn_fullscreen: "全屏",
+        cover_subtitle: "弥散画布工具",
+        aria_page_links: "资源链接",
+        aria_lang_group: "语言",
+        s1_title: "开发动因",
+        s1_p1:
+          "在视觉传达中，我们常常需要为海报或社交媒体主视觉寻找合适的设计方案；弥散渐变是其中常用手段之一。",
+        s1_p2:
+          "传统做法往往需要在设计软件里反复调整光感与构图。本工具旨在简化这一繁琐流程，让从「想法」到「可用画面」的转化更快速、更省力。",
+        s2_title: "工作应用",
+        s2_f1_h: "前期探索",
+        s2_f1_p: "快速生成情绪板与氛围背景。",
+        s2_f2_h: "品牌延展",
+        s2_f2_p: "作为视觉母版，批量生成风格统一、成系列的画面素材。",
+        s2_f3_h: "后期合成",
+        s2_f3_p: "支持透明背景 PNG 导出，便于叠放文字与图形。",
+        s2_f4_h: "动态输出",
+        s2_f4_p: "一键录制画布，产出动态视觉素材。",
+        s3_title: "设计思维流程",
+        s3_f1_h: "交互",
+        s3_f1_p: "以手势轨迹为主体，建立动作与画面之间的关联。",
+        s3_f2_h: "视觉",
+        s3_f2_p: "用算法沿手势轨迹模拟弥散光斑变化，保证动态肌理的一致性。",
+        s3_f3_h: "控制",
+        s3_f3_p: "通过光晕、配色、预设与撤销/重做提升可控性。",
+        s3_f4_h: "交付",
+        s3_f4_p: "整合画布导出与视频录制，贯通使用闭环。",
+        s4_title: "设计决策",
+        s4_f1_h: "结构",
+        s4_f1_p: "侧栏分页（画布/手势/颜色/导出），实现高效单屏操作。",
+        s4_f2_h: "引导",
+        s4_f2_p: "进入页提供语言选择，降低跨语言用户的理解门槛。",
+        s4_f3_h: "容错",
+        s4_f3_p: "手势栏整合「清除 + 撤销/重做」，支持高频试错探索。",
+        s4_f4_h: "呈现",
+        s4_f4_p: "色彩预设配合滚轮实时调节扩散尺寸，让效果直观可见。",
+        s4_core:
+          "这些决策的核心是<strong>降低使用难度</strong>，从而更快、更简单地生成理想的视觉元素。",
+        s5_title: "开发流程",
+        s5_p1_h: "构思与原型",
+        s5_p1_p: "开发初期先搭建小型原型，验证想法可行性。",
+        s5_p2_h: "功能实现",
+        s5_p2_p: "持续加入网页功能，逐模块完成核心能力。",
+        s5_p3_h: "测试与排查",
+        s5_p3_p: "检验网页生成效果与操作体验，及时发现并修复问题。",
+        s5_p4_h: "迭代优化",
+        s5_p4_p: "根据反馈持续调整，优化整体使用体验。",
+        link_app: "进入应用",
+        link_video: "查看视频教程",
+      },
+    };
+
+    let presLang = "en";
+
+    function applyPresentationLang(lang) {
+      presLang = lang;
+      const t = I18N[lang];
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = t.doc_title;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (key && t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-html");
+        if (key && t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      const pageNav = document.getElementById("page-links-nav");
+      if (pageNav) pageNav.setAttribute("aria-label", t.aria_page_links);
+
+      const langGroup = document.getElementById("lang-switch-group");
+      if (langGroup) langGroup.setAttribute("aria-label", t.aria_lang_group);
+
+      document.getElementById("lang-en").classList.toggle("active", lang === "en");
+      document.getElementById("lang-zh").classList.toggle("active", lang === "zh");
+    }
+
+    document.getElementById("lang-en").addEventListener("click", () => applyPresentationLang("en"));
+    document.getElementById("lang-zh").addEventListener("click", () => applyPresentationLang("zh"));
+    applyPresentationLang("en");
+
     // 滚动导航
     const presentation = document.getElementById('presentation');
     const dots = document.querySelectorAll('.nav-dot');
